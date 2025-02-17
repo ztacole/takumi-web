@@ -76,9 +76,7 @@
             limit,
             ...filters
         }).toString();
-        const response = await fetch(`/api/absensi?${query}`);
-
-        console.log(`/api/absensi?${query}`);
+        const response = await fetch(`https://backend24.site/Rian/XI/takumi/api/absensi?${query}`);
 
         const result = await response.json();
 
