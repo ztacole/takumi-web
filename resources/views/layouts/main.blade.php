@@ -5,44 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <style>
-        /* body {
-            display: flex;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: #333;
-            color: white;
-            padding: 15px;
-            height: 100vh;
-        }
-
-        .sidebar a {
-            display: block;
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-        }
-
-        .sidebar a.active {
-            background: #555;
-        }
-
-         */
-    </style>
     <link rel="icon" href={{ asset('assets/images/takumi_logo.png') }}>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="{{ asset('assets/styles/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/app.css') }}">
 </head>
 
-<body>
+<body class="h-screen flex flex-col overflow-hidden">
     <nav class="navbar">
-        <img src={{ asset('assets/images/takumi_logo.png') }} alt="Takumi">
-        <div id="clock"></div>
+        <div class="flex items-center gap-4">
+            <img src={{ asset('assets/images/takumi_logo.png') }} alt="Takumi">
+        </div>
+        
+        <div id="clock" class="hidden md:block lg:block"></div>
+        
+        <!-- Menu toggle -->
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <i id="menuIcon" class="uil uil-bars"></i>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobileMenu" class="hidden">
+            <div class="mobile-menu-content">
+                <ul class="py-2">
+                    <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+                        <li class="px-4 py-2 hover:bg-gray-100"><i class="uil uil-estate"></i>Dashboard</li>
+                    </a>
+                    <a href="{{ url('/absensi') }}" class="{{ request()->is('absensi') ? 'active' : '' }}">
+                        <li class="px-4 py-2 hover:bg-gray-100"><i class="uil uil-clock"></i>Absensi</li>
+                    </a>
+                </ul>
+                <!-- Clock untuk mobile -->
+                <div id="mobileClock" class="px-4 py-2 text-center"></div>
+            </div>
+        </div>
     </nav>
-    <main>
+
+    <main class="flex-1 flex overflow-hidden">
+        <!-- Sidebar desktop -->
         <div class="sidebar">
             <ul>
                 <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
@@ -53,23 +53,19 @@
                 </a>
             </ul>
         </div>
-        <div class="content">
+        <div class="content flex-1 overflow-y-auto">
             @yield('content')
         </div>
     </main>
+
     <script>
-        //Dashboard
         document.addEventListener("DOMContentLoaded", function() {
             setInterval(updateClock, 1000);
             updateClock();
         })
 
-        //ganti tema
-        // Fungsi untuk toggle tema antara dark mode dan light mode
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-
-            // Simpan preferensi mode ke local storage
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
             } else {
@@ -77,14 +73,12 @@
             }
         }
 
-        // Periksa localStorage untuk menerapkan mode yang disimpan
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
             }
         };
-
 
         function updateClock() {
             const date = new Date();
@@ -96,14 +90,25 @@
             };
             const now = date.toLocaleDateString('id-ID', options) + ' | ' + date.toLocaleTimeString('id-ID');
             document.getElementById('clock').innerText = now;
+            const mobileClock = document.getElementById('mobileClock');
+            if (mobileClock) {
+                mobileClock.innerText = now;
+            }
         }
 
-        function openModal(id) {
-            document.getElementById(id).classList.remove("hidden");
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.add("hidden");
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            
+            mobileMenu.classList.toggle('hidden');
+            // Ganti icon saat menu terbuka/tertutup
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('uil-times');
+                menuIcon.classList.add('uil-bars');
+            } else {
+                menuIcon.classList.remove('uil-bars');
+                menuIcon.classList.add('uil-times');
+            }
         }
     </script>
 </body>
