@@ -4,36 +4,39 @@
 
 @section('content')
 <h1 class="text-2xl font-bold">Absensi</h1>
-<div class="filter-container">
-    <input type="text" id="filter-nama" oninput="fetchData(1)" placeholder="Cari Nama">
-    <select name="jurusan" id="filter-jurusan" onchange="updateKelas(); fetchData(1);">
-        <option value="">Jurusan</option>
-        <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-        <option value="Perhotelan">Perhotelan</option>
-        <option value="Kuliner">Kuliner</option>
-        <option value="Usaha Layanan Wisata">Usaha Layanan Wisata</option>
-        <option value="Tata Busana">Tata Busana</option>
-    </select>
-    <select name="kelas" onchange="fetchData(1)" id="filter-kelas">
-        <option value="">Pilih Kelas</option>
-    </select>
-    <input type="date" onchange="fetchData(1)" id="filter-tanggal">
-    <select id="filter-status" onchange="fetchData(1)">
-        <option value="">Status</option>
-        <option value="Terlambat">Terlambat</option>
-        <option value="Tepat Waktu">Tepat waktu</option>
-    </select>
-    <select id="filter-mood" onchange="fetchData(1)">
-        <option value="">Pilih Mood</option>
-        <option value="Senang">Senang</option>
-        <option value="Sedih">Sedih</option>
-        <option value="Biasa Saja">Biasa Saja</option>
-    </select>
-    <button onclick="resetData(1)" class="reset-btn">Reset</button>
+<div class="divider-filter-refresh">
+
+    <div class="filter-container">
+        <input type="text" id="filter-nama" oninput="fetchData(1)" placeholder="Cari Nama">
+        <select name="jurusan" id="filter-jurusan" onchange="updateKelas(); fetchData(1);">
+            <option value="">Jurusan</option>
+            <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+            <option value="Perhotelan">Perhotelan</option>
+            <option value="Kuliner">Kuliner</option>
+            <option value="Usaha Layanan Wisata">Usaha Layanan Wisata</option>
+            <option value="Tata Busana">Tata Busana</option>
+        </select>
+        <select name="kelas" onchange="fetchData(1)" id="filter-kelas">
+            <option value="">Pilih Kelas</option>
+        </select>
+        <input type="date" onchange="fetchData(1)" id="filter-tanggal">
+        <select id="filter-status" onchange="fetchData(1)">
+            <option value="">Status</option>
+            <option value="Terlambat">Terlambat</option>
+            <option value="Tepat Waktu">Tepat waktu</option>
+        </select>
+        <select id="filter-mood" onchange="fetchData(1)">
+            <option value="">Pilih Mood</option>
+            <option value="Senang">Senang</option>
+            <option value="Sedih">Sedih</option>
+            <option value="Biasa Saja">Biasa Saja</option>
+        </select>
+        <button onclick="resetData(1)" class="reset-btn">Reset</button>
+        <div id="data-container"></div>
+    </div>
     <button class="refresh-btn" onclick="showNotification('Data Terupdate!')">
         <i class="uil uil-refresh"></i>
     </button>
-    <div id="data-container"></div>
 </div>
 <div id="notification-container" class="notification-container"></div>
 <table id="absensi-table">
