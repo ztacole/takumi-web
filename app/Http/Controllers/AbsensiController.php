@@ -41,7 +41,7 @@ class AbsensiController extends Controller
 
         return response()->json([
             'data' => $data->items(),
-            'total' => $query->count(),
+            'total' => $data->total(),
             'limit' => $request->limit,
             'page' => $request->page
         ]);

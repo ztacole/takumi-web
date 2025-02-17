@@ -75,7 +75,7 @@
         }).toString();
         const response = await fetch(`/api/absensi?${query}`);
 
-        console.log(`server.php?${query}`);
+        console.log(`/api/absensi?${query}`);
 
         const result = await response.json();
 
