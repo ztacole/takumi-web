@@ -53,7 +53,7 @@
                 </a>
             </ul>
         </div>
-        <div class="content mx-auto flex-1 overflow-y-auto px-4 py-6">
+        <div class="content mx-auto flex-1 px-4 py-6">
             @yield('content')
         </div>
     </main>

@@ -116,35 +116,25 @@ main {
     color: var(--navy);
     margin-bottom: 20px;
 }
-
-.content .card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    margin-bottom: 20px;
-}
 /* absensi */
 table {
 width: 100%;
 border-collapse: collapse;
 font-family: Arial, sans-serif;
 font-size: 12px;
-margin-bottom: 20px;
 }
 
 table th,
 table td {
 padding: 8px 16px;
 text-align: left;
-white-space: nowrap; /* Mencegah teks turun ke baris baru */
-overflow: hidden; /* Sembunyikan teks yang melebihi batas */
-text-overflow: ellipsis; /* Tambahkan "..." jika teks terlalu panjang */
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
 table th {
 background-color: var(--navy);
-border: 1px solid #d0d7de;
 color: white;
 font-weight: 600;
 }
@@ -433,14 +423,19 @@ h6 {
 .card {
     overflow: hidden;
     position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .card-container {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
     cursor: pointer;
+    margin-bottom: 2rem;
 }
 
 .card-container .terlambat {

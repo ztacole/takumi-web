@@ -39,11 +39,12 @@
     </button>
 </div>
 <div id="notification-container" class="notification-container"></div>
-<div class="bg-white shadow-md rounded-lg p-4">
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
     <div class="overflow-x-auto">
-        <table class="min-w-max w-full border-collapse border border-gray-300">
+        <table class="w-full">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>NISN</th>
                     <th>Nama</th>
                     <th>Jurusan</th>
@@ -108,10 +109,13 @@
         const tbody = document.getElementById("absensi-body");
         tbody.innerHTML = "";
 
+        let no = limit * (currentPage - 1) + 1;
+
         data.forEach(row => {
             const tr = document.createElement("tr");
             const status = (row.Status === "Tepat Waktu--") ? `<td>${row.Status}</td>` : `<td style="color: red;">${row.Status}</td>`;
             tr.innerHTML = `
+            <td>${no++}</td>
             <td>${row.NISN}</td>
             <td>${row.Nama}</td>
             <td>${row.Jurusan}</td>
