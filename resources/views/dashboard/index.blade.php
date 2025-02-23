@@ -99,7 +99,11 @@
 
     function renderTable(data, type) {
         if (data.length === 0) {
-            document.getElementById('dashboard-content').innerHTML = `<p class="text-center p-4">Tidak ada siswa yang ${(type != 'belum-hadir') ? type : 'belum hadir (Coming Soon)'}</p>`;
+            const dashboardContent = document.getElementById('dashboard-content');
+            const info = document.createElement('p');
+            info.classList.add('text-center', 'p-4');
+            info.textContent = `Tidak ada siswa yang ${(type != 'belum-hadir') ? type : 'belum hadir \n(Coming Soon)'}`;
+            dashboardContent.appendChild(info);
             return;
         }
 
