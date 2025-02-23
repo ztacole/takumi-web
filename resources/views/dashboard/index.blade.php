@@ -100,7 +100,7 @@
     function renderTable(data, type) {
         if (data.length === 0) {
             const dashboardContent = document.getElementById('dashboard-content');
-            dashboardContent.removeChild(dashboardContent.lastChild);
+            if (dashboardContent.childElementCount > 1) dashboardContent.removeChild(dashboardContent.lastChild);
             const info = document.createElement('p');
             info.classList.add('text-center', 'p-4');
             info.textContent = `Tidak ada siswa yang ${(type != 'belum-hadir') ? type : 'belum hadir \n(Coming Soon)'}`;
