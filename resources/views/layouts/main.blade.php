@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/styles/app.css') }}">
 </head>
 
-<body class="h-screen flex flex-col overflow-hidden">
+<body class="h-screen flex flex-col">
     <nav class="navbar">
         <div class="flex items-center gap-4">
             <img src={{ asset('assets/images/takumi_logo.png') }} alt="Takumi">
@@ -41,7 +41,7 @@
         </div>
     </nav>
 
-    <main class="flex-1 flex overflow-hidden">
+    <main class="flex-1 flex">
         <!-- Sidebar desktop -->
         <div class="sidebar">
             <ul>
@@ -57,6 +57,10 @@
             @yield('content')
         </div>
     </main>
+
+    <footer class="py-4 text-center text-sm text-black dark:text-white/70">
+        <p>&copy; 2025 Takumi. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

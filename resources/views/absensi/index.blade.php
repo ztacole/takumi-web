@@ -135,7 +135,7 @@
         pagination.innerHTML = Array.from({
             length: totalPages
         }, (_, i) => `
-                <button onclick="changePage(${i + 1})" id="page-btn-${i + 1}">${i + 1}</button>
+                <button onclick="changePage(${i + 1})" ${i + 1 === currentPage ? 'class="active"' : ''} id="page-btn-${i + 1}">${i + 1}</button>
             `).join('');
 
     }
