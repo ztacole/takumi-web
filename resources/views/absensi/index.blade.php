@@ -34,28 +34,32 @@
         <button onclick="resetData(1)" class="reset-btn">Reset</button>
         <div id="data-container"></div>
     </div>
-    <button class="refresh-btn" onclick="showNotification('Data Terupdate!')">
+    <button class="refresh-btn" onclick="fetchData(1)">
         <i class="uil uil-refresh"></i>
     </button>
 </div>
 <div id="notification-container" class="notification-container"></div>
-<table id="absensi-table">
-    <thead>
-        <tr>
-            <th>NISN</th>
-            <th>Nama</th>
-            <th>Jurusan</th>
-            <th>Kelas</th>
-            <th>Mood</th>
-            <th>Catatan</th>
-            <th>Status</th>
-            <th>Waktu</th>
-        </tr>
-    </thead>
-    <tbody id="absensi-body">
-        <!-- Rows generated dynamically -->
-    </tbody>
-</table>
+<div class="bg-white shadow-md rounded-lg p-4">
+    <div class="overflow-x-auto">
+        <table class="min-w-max w-full border-collapse border border-gray-300">
+            <thead>
+                <tr>
+                    <th>NISN</th>
+                    <th>Nama</th>
+                    <th>Jurusan</th>
+                    <th>Kelas</th>
+                    <th>Mood</th>
+                    <th>Catatan</th>
+                    <th>Status</th>
+                    <th>Waktu</th>
+                </tr>
+            </thead>
+            <tbody id="absensi-body">
+                <!-- Rows generated dynamically -->
+            </tbody>
+        </table>
+    </div>
+</div>
 <div class="pagination" id="pagination"></div>
 <script>
     let currentPage = 1;
@@ -67,7 +71,6 @@
     });
 
     async function fetchData(page) {
-        console.log('Fetching data...');
         currentPage = page;
         const filters = getFilters();
 
@@ -80,11 +83,10 @@
 
         const result = await response.json();
 
-        console.log('Data dari server:', result);
-        console.log('Hasil filter:', result.data);
-
         renderTable(result.data);
         setupPagination(result.total, result.limit);
+
+        showNotification();
     }
 
     function resetData(page) {
@@ -199,7 +201,7 @@
         document.getElementById('clock').innerText = now;
     }
 
-    function showNotification(message) {
+    function showNotification() {
         const container = document.getElementById('notification-container');
         if (container.children.length >= 3) {
             container.removeChild(container.firstChild);
@@ -207,11 +209,9 @@
 
         const notification = document.createElement('div');
         notification.classList.add('notification', 'show');
-        notification.textContent = message;
+        notification.textContent = "Data berhasil diperbarui!";
 
         container.appendChild(notification);
-
-        fetchData(1);
 
         setTimeout(() => {
             notification.classList.remove('show');
