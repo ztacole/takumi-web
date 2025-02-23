@@ -50,7 +50,7 @@
                     clearInterval(dataRefreshInterval);
                 }
 
-                fetch(`/dashboard/load?type=${type}`)
+                fetch(`https://backend24.site/Rian/XI/takumi/dashboard/load?type=${type}`)
                     .then(response => response.text())
                     .then(data => {
                         dashboardContent.innerHTML = data;
@@ -69,7 +69,7 @@
     });
 
     async function fetchData() {
-        const response = await fetch(`/api/dashboard`);
+        const response = await fetch(`https://backend24.site/Rian/XI/takumi/api/dashboard`);
         const result = await response.json();
 
         renderData(result);
@@ -88,7 +88,7 @@
 
     async function fetchTypeData(type) {
         try {
-            const response = await fetch(`/api/dashboard/${type}`);
+            const response = await fetch(`https://backend24.site/Rian/XI/takumi/api/dashboard/${type}`);
             const result = await response.json();
 
             renderTable(result.data, type);
