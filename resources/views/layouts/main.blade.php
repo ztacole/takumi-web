@@ -28,7 +28,7 @@
         <div id="mobileMenu" class="hidden">
             <div class="mobile-menu-content">
                 <ul class="py-2">
-                    <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+                    <a href="{{ url('/dashboard') }}" class="{{ request()->is('/dashboard') ? 'active' : '' }}">
                         <li class="px-4 py-2 hover:bg-gray-100"><i class="uil uil-estate"></i>Dashboard</li>
                     </a>
                     <a href="{{ url('/absensi') }}" class="{{ request()->is('absensi') ? 'active' : '' }}">
@@ -45,7 +45,7 @@
         <!-- Sidebar desktop -->
         <div class="sidebar">
             <ul>
-                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+                <a href="{{ url('/dashboard') }}" class="{{ request()->is('/dashboard') ? 'active' : '' }}">
                     <li><i class="uil uil-estate"></i>Dashboard</li>
                 </a>
                 <a href="{{ url('/absensi') }}" class="{{ request()->is('absensi') ? 'active' : '' }}">

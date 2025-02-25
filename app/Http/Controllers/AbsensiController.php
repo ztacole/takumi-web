@@ -5,17 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Absensi;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class AbsensiController extends Controller
 {
 
     public function index() {
+        if (!Session::has('user')) {
+            return redirect('/')->withErrors(['message' => 'Silakan login dulu']);
+        }
+
         return view('absensi.index');
     }
 
     // Menampilkan semua data absensi dengan pagination & filter
     public function getAbsensi(Request $request)
     {
+        if (!Session::has('user')) {
+            return redirect('/')->withErrors(['message' => 'Silakan login dulu']);
+        }
+
         $query = Absensi::query();
 
         if ($request->filled('nama')) {

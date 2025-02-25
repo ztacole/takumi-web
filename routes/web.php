@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 //View
-Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+Route::get('/', [App\Http\Controllers\AuthController::class, 'index'])->name('index');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
+
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/dashboard/load', [App\Http\Controllers\DashboardController::class, 'loadData']);
 
 Route::get('/absensi', [App\Http\Controllers\AbsensiController::class, 'index']);
